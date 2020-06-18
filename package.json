@@ -1,0 +1,18 @@
+{
+  "name": "yatzy",
+  "version": "1.0.0",
+  "description": "A single player game of Yatzy!",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve",
+    "test": "jest"
+  },
+  "author": "Martynas",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "babel-jest": "^26.0.1",
+    "jest": "^26.0.1"
+  }
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yatzy!</title>
+    <link rel="stylesheet" type="text/css" href="style/gameBoard.css">
+    <link rel="stylesheet" type="text/css" href="style/dice.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo"></div>
+            <h1 class="title">Yatzy!</h1>
+        </div>
+    </header>
+    <main class="game-board container">
+        <aside  class="score-board">
+            <section class="score-board-container">
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Ones</span>
+                    <button id="ones" class="score-board-item-button upper" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Twos</span>
+                    <button id="twos" class="score-board-item-button upper" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Threes</span>
+                    <button id="threes" class="score-board-item-button upper" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Fours</span>
+                    <button id="fours" class="score-board-item-button upper" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Fives</span>
+                    <button id="fives" class="score-board-item-button upper" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Sixes</span>
+                    <button id="sixes" class="score-board-item-button upper" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item score-board-item-subtotal">
+                    <span class="score-board-item-description ">SubTotal: </span>
+                    <div id="upper-subtotal" class="score-board-item-button scored">-</div>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">One pair</span>
+                    <button id="one-pair" class="score-board-item-button" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Two pairs</span>
+                    <button id="two-pairs" class="score-board-item-button" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Three of a kind</span>
+                    <button id="three-of-a-kind" class="score-board-item-button" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Four of a kind</span>
+                    <button id="four-of-a-kind" class="score-board-item-button" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Small straight</span>
+                    <button id="small-straight" class="score-board-item-button" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Large straight</span>
+                    <button id="large-straight" class="score-board-item-button" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Full House</span>
+                    <button id="full-house" class="score-board-item-button" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Chance</span>
+                    <button id="chance" class="score-board-item-button" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item">
+                    <span class="score-board-item-description">Yatzy</span>
+                    <button id="yatzy" class="score-board-item-button" onclick="gameBoard.setScore(id)">-</button>
+                </div>
+                <div class="score-board-item score-board-item-subtotal">
+                    <span class="score-board-item-description ">SubTotal:</span>
+                    <div id="lower-subtotal" class="score-board-item-button scored">-</div>
+                </div>
+                <div class="score-board-item score-board-item-subtotal">
+                    <span class="score-board-item-description ">Total:</span>
+                    <div id="total" class="score-board-item-button scored">-</div>
+                </div>
+            </section>
+        </aside>
+        <article class="dice-board">
+            <section class="dice-board-container">
+                <div class="dice-wrapper">
+                    <div id="die-slot-0" onclick="gameBoard.toggleDieHold(id)">
+                        <img />
+                    </div>
+                </div>
+                <div class="dice-wrapper">
+                    <div id="die-slot-1" onclick="gameBoard.toggleDieHold(id)">
+                        <img />
+                    </div>
+                </div>
+                <div class="dice-wrapper">
+                    <div id="die-slot-2" onclick="gameBoard.toggleDieHold(id)">
+                        <img />
+                    </div>
+                </div>
+                <div class="dice-wrapper">
+                    <div id="die-slot-3" onclick="gameBoard.toggleDieHold(id)">
+                        <img />
+                    </div>
+                </div>
+                <div class="dice-wrapper">
+                    <div id="die-slot-4" onclick="gameBoard.toggleDieHold(id)">
+                        <img />
+                    </div>
+                </div>
+            </section>
+            <section class="roll-button-container">
+                <button id="roll-button" class="roll-button" onclick="gameBoard.rollUnheldDice()">Roll Dice!</button>
+            </section>
+            <section class="dice-board-container dice-board-info">
+                <h3 id="info-heading" class="dice-board-info-heading">Click "Roll Dice" to begin the game!</h3>
+                <h4 id="info-subheading" class="dice-board-info-subheading">You have 3 roll(s) left.</h4>
+            </section>
+        </article>
+    </main>
+    <footer class="footer">
+        <div class="container copyright-tag-wrapper">
+            <h4 class="copyright-tag">YATZY! Inc. &#169 2020</h4>
+        </div>
+    </footer>
+    <script type="module">
+        import { gameBoard } from './index.js'
+        window.gameBoard = gameBoard
+    </script>
+</body>
+</html>

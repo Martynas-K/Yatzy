@@ -1,0 +1,47 @@
+.dice-wrapper {
+    width: 20%;
+    padding: 4% 0 4% 4%;
+}
+
+.dice-wrapper:last-child {
+    margin-right: 4%;
+}
+
+.dice {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.selected {
+    opacity: 0.4;
+}
+
+.die-init {
+    background-image: url(../svg/dice/dice-six-faces-random.svg);
+}
+
+.die-img-1 {
+    background-image: url(../svg/dice/dice-six-faces-one.svg);
+}
+
+.die-img-2 {
+    background-image: url(../svg/dice/dice-six-faces-two.svg);
+}
+
+.die-img-3 {
+    background-image: url(../svg/dice/dice-six-faces-three.svg);
+}
+
+.die-img-4 {
+    background-image: url(../svg/dice/dice-six-faces-four.svg);
+}
+
+.die-img-5 {
+    background-image: url(../svg/dice/dice-six-faces-five.svg);
+}
+
+.die-img-6 {
+    background-image: url(../svg/dice/dice-six-faces-six.svg);
+}
