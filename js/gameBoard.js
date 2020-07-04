@@ -8,6 +8,7 @@ export const gameBoard = (() => {
         lowerSubtotal = 0
 
     const rollButton = document.getElementById("roll-button");
+    const infoHeading = document.getElementById("info-heading");
 
     const init = () => {
         getDiceSlots();
@@ -49,15 +50,15 @@ export const gameBoard = (() => {
         document.getElementById("info-subheading").innerHTML = "You have " + (3 - currentRoll) + " roll(s) left.";
 
         if (currentRoll === 0) {
-            document.getElementById("info-heading").innerHTML = "Next turn!";
+            infoHeading.innerHTML = "Next turn!";
         }
         if (currentRoll > 0) {
-            document.getElementById("info-heading").innerHTML = "Click dice to hold them!";
+            infoHeading.innerHTML = "Click dice to hold them!";
         }
         if (currentRoll > 2) {
             disableRollButton();
             rollButton.innerHTML = "Out of rolls!";
-            document.getElementById("info-heading").innerHTML = "Place your score on the scoreboard!";
+            infoHeading.innerHTML = "Place your score on the scoreboard!";
         }
     }
 
@@ -120,7 +121,7 @@ export const gameBoard = (() => {
         currentRoll = 0;
         updateRollButton();
         enableRollButton();
-        clearHeldDice()
+        clearHeldDice();
         displayInitialDice();
     }
 
