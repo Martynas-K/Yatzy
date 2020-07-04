@@ -118,12 +118,14 @@ body {
     cursor: pointer;
 }
 
+
 .score-board-item-button:hover {
     transition: background-color 300ms ease-out;
     background-color: #fbb273;
+    color: black;
 }
 
-.scored {
+.totals, .scored {
     color: black;
 }
 

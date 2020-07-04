@@ -5,16 +5,28 @@ export const gameBoard = (() => {
         currentDiceValues = [],
         currentRoll = 0,
         upperSubtotal = 0,
-        lowerSubtotal = 0
+        lowerSubtotal = 0,
+        gameOver = false
 
     const rollButton = document.getElementById("roll-button");
     const infoHeading = document.getElementById("info-heading");
+    const infoSubheading = document.getElementById("info-subheading");
 
     const init = () => {
         getDiceSlots();
         displayInitialDice();
+        setInitialScoreValues();
+        disableScoreBoard();
     }
     
+    const setInitialScoreValues = () => {
+        const scores = document.getElementsByClassName("score-board-item-button");
+        for (const score of scores) {
+            score.innerHTML = 0;
+            score.classList.remove("scored");
+        }
+    }
+
     const getDiceSlots = () => {
         for (let i = 0; i < 5; i++) {
             diceSlots.push(document.getElementById("die-slot-" + i));
@@ -22,6 +34,7 @@ export const gameBoard = (() => {
     }
     
     const displayInitialDice = () => {
+        clearHeldDice();
         for (const slot of diceSlots) {
             slot && (slot.firstElementChild.className = "");
             slot && (slot.firstElementChild.classList.add("dice", "die-init"));
@@ -43,12 +56,17 @@ export const gameBoard = (() => {
 
     const enableRollButton = () => {
         rollButton.removeAttribute("disabled");
-        rollButton.innerHTML = "Roll Dice!";
+        !gameOver && (rollButton.innerHTML = "Roll Dice!");
     }
 
     const updateRollButton = () => {
-        document.getElementById("info-subheading").innerHTML = "You have " + (3 - currentRoll) + " roll(s) left.";
-
+        if (gameOver) {
+            rollButton.innerHTML = "Start!";
+            infoHeading.innerHTML = "Your final score is " + (upperSubtotal + lowerSubtotal) + "!";
+            infoSubheading.innerHTML = "Click Start to play again.";
+            return;
+        }
+        infoSubheading.innerHTML = "You have " + (3 - currentRoll) + " roll(s) left.";
         if (currentRoll === 0) {
             infoHeading.innerHTML = "Next turn!";
         }
@@ -62,7 +80,15 @@ export const gameBoard = (() => {
         }
     }
 
-    const rollUnheldDice = () => {
+    const rollButtonAction = () => {
+        if (gameOver) {
+            restartGame();
+            return;
+        }
+        rollDice();
+    }
+
+    const rollDice = () => {
         for (let i = 0; i < 5; i++) {
             if (!document.getElementById("die-slot-" + i).classList.contains("selected")) {
                 currentDiceValues[i] = rollSingleDie();
@@ -116,22 +142,36 @@ export const gameBoard = (() => {
             slot.classList.contains("selected") && toggleDieHold(slot.id);
         }
     }
-
+    
     const resetTurn = () => {
         currentRoll = 0;
+        checkForGameOver();
         updateRollButton();
         enableRollButton();
-        clearHeldDice();
         displayInitialDice();
     }
 
-    //TODO: final score; restart game
+    const checkForGameOver = () => {
+        const totalButtons = document.getElementsByClassName("score-board-item-button").length;
+        const scoredButtons = document.getElementsByClassName("scored").length 
+                                + document.getElementsByClassName("totals").length;
+        return totalButtons === scoredButtons && (gameOver = true);
+    }
+    
+    const restartGame = () => {
+        gameOver = false;
+        upperSubtotal = 0;
+        lowerSubtotal = 0;
+        setInitialScoreValues();
+        enableRollButton();
+        updateRollButton();
+    }
 
     init();
 
     return {
         toggleDieHold,
-        rollUnheldDice,
+        rollButtonAction,
         setScore
     }
 })();
